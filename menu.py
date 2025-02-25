@@ -30,27 +30,27 @@ class ElementoMenu:
         return self.costo
 
 
-class Refresco(ElementoMenu):
+class Bebida(ElementoMenu):
     """
     Representa una bebida dentro del menú.
 
     Atributos:
-        tamano (str): Tamaño de la bebida.
+        tamaño (str): Tamaño de la bebida.
 
     Hereda de:
         ElementoMenu
     """
-    def __init__(self, nombre: str, costo: float, tamano: str):
+    def __init__(self, nombre: str, costo: float, tamaño: str):
         """
         Inicializa una nueva bebida con un nombre, precio y tamaño.
 
         Args:
             nombre (str): Nombre de la bebida.
             costo (float): Precio de la bebida.
-            tamano (str): Tamaño de la bebida.
+            tamaño (str): Tamaño de la bebida.
         """
         super().__init__(nombre, costo)
-        self.tamano = tamano
+        self.tamaño = tamaño
 
 
 class Entrada(ElementoMenu):
@@ -81,22 +81,22 @@ class PlatoFuerte(ElementoMenu):
     Representa un plato fuerte dentro del menú.
 
     Atributos:
-        guarniciones (list): Lista de guarniciones del plato fuerte.
+        acompañamientos (list): Lista de acompañamientos del plato fuerte.
 
     Hereda de:
         ElementoMenu
     """
-    def __init__(self, nombre: str, costo: float, guarniciones: list):
+    def __init__(self, nombre: str, costo: float, acompañamientos: list):
         """
-        Inicializa un nuevo plato fuerte con nombre, precio y lista de guarniciones.
+        Inicializa un nuevo plato fuerte con nombre, precio y lista de acompañamientos.
 
         Args:
             nombre (str): Nombre del plato fuerte.
             costo (float): Precio del plato fuerte.
-            guarniciones (list): Lista de guarniciones del plato fuerte.
+            acompañamientos (list): Lista de acompañamientos del plato fuerte.
         """
         super().__init__(nombre, costo)
-        self.guarniciones = guarniciones
+        self.acompañamientos = acompañamientos
 
 
 class Pedido:
@@ -163,9 +163,9 @@ class Pedido:
 
 
 menu_disponible = [
-    Refresco("Coca-Cola", 2.0, "Grande"),
-    Refresco("Agua Mineral", 1.0, "Mediana"),
-    Refresco("Limonada", 1.5, "Grande"),
+    Bebida("Coca-Cola", 2.0, "Grande"),
+    Bebida("Agua Mineral", 1.0, "Mediana"),
+    Bebida("Limonada", 1.5, "Grande"),
     Entrada("Nachos", 2.5, "Grande"),
     Entrada("Tostones", 2.0, "Mediana"),
     Entrada("Yuca Frita", 3.0, "Mediana"),
@@ -185,10 +185,10 @@ print(f"Total con descuento del 10%: {pedido_cliente.aplicar_descuento(10)}")
 
 for item in pedido_cliente:
     print(f"{item.nombre} - {item.costo}", end="")
-    if isinstance(item, Refresco):
-        print(f" - {item.tamano}")
+    if isinstance(item, Bebida):
+        print(f" - {item.tamaño}")
     elif isinstance(item, Entrada):
         print(f" - {item.cantidad}")
     else:
-        for acomp in item.guarniciones:
+        for acomp in item.acompañamientos:
             print(f" - {acomp}", end="")
